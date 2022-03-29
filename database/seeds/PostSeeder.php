@@ -1,7 +1,9 @@
 <?php
 
+use App\User;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
@@ -17,9 +19,11 @@ class PostSeeder extends Seeder
     {
         // Pluck the category IDs and transform them into array format
         $category_ids = Category::pluck('id')->toArray();
+        $user_ids = User::pluck('id')->toArray();
 
         for ($i = 0; $i < 50; $i++) {
             $post = new Post();
+            $post->user_id = Arr::random($user_ids);
             $post->category_id = Arr::random($category_ids);
             $post->title = $faker->sentence(2);
             $post->content = $faker->paragraphs(3, true);
