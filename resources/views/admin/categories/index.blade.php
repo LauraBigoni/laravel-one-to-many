@@ -33,9 +33,9 @@
                                 <td>{{ $category->label }}</td>
                                 <td>
                                     @if (isset($category))
-                                        <span class="badge badge-pill badge-{{ $category->color }}">
-                                            {{ $category->color }}
-                                        </span>
+                                        <p class="badge display-1 badge-pill badge-{{ $category->color }}">
+                                            <span class="h6">{{ $category->color }}</span>
+                                        </p>
                                     @else
                                         -
                                     @endif
@@ -66,6 +66,15 @@
                         @endforelse
                     </tbody>
                 </table>
+                <div class="add-categories d-flex justify-content-end mb-4">
+                    <form action="{{ route('admin.categories.truncate') }}" method="POST" class="delete-form"
+                        data-name="tutte le categorie">
+                        @csrf
+                        @method('DELETE')
+                        <button class="fw-bold btn btn-sm btn-danger" type="submit"><i
+                                class="text-white fa-solid fa-trash"></i> Elimina tutto</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

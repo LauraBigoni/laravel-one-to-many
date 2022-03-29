@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('updated_at', 'DESC')->get();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -116,5 +116,18 @@ class CategoryController extends Controller
     {
         $category->delete();
         return redirect()->route('admin.categories.index')->with('message', "$category->label eliminato con successo!")->with('type', 'danger');
+    }
+
+    /**
+     * Remove all resource from storage.
+     *
+     * @param  
+     * @return \Illuminate\Http\Response
+     */
+    public function truncate()
+    {
+        // TODO: chiedere a marco
+
+        return redirect()->route('admin.categories.index')->with('message', "Tutte le categorie sono state eliminate con successo!")->with('type', 'danger');
     }
 }

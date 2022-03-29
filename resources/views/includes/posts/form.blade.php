@@ -80,7 +80,7 @@
                 <img src="{{ old('image', $post->image) ??'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw_HeSzHfBorKS4muw4IIeVvvRgnhyO8Gn8w&usqp=CAU' }}"
                     width="50px" class="img-fluid rounded" alt="image placeholder" id="preview">
             </div>
-            <hr>
+            
             <div class="col-6">
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="is-published" name="is_published"
