@@ -17,4 +17,12 @@ class Post extends Model
          */
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function user()
+    {
+        /** 
+         * Serve per fare $post->category
+         */
+        return $this->belongsTo('App\User');
+    }
 }

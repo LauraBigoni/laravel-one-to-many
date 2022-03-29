@@ -37,11 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function category()
+    public function posts()
     {
         /** 
          * Serve per fare $post->category
          */
-        return $this->belongsTo('App\Models\Category');
+        return $this->hasMany('App\Models\Post');
     }
 }

@@ -6,7 +6,6 @@
             <div class="col-12">
                 <header>
                     <h1 class="text-center">Lista dei post</h1>
-
                     @if (session('message'))
                         <div class="container alert alert-{{ session('type') }} text-center" role="alert">
                             <p>{{ session('message') }}</p>
@@ -15,7 +14,7 @@
                 </header>
                 <div class="add-posts d-flex justify-content-end mb-4">
                     <a class="btn btn-sm btn-info" href="{{ route('admin.posts.create') }}"><i
-                            class="fa-solid fa-plus"></span></i></a>
+                        class="fa-solid fa-plus"></span></i></a>
                 </div>
                 <table class="table">
                     <thead>
@@ -24,6 +23,7 @@
                             <th scope="col">Publish</th>
                             <th scope="col">Category</th>
                             <th scope="col">Title</th>
+                            <th scope="col">Autore</th>
                             <th scope="col">Created at</th>
                             <th scope="col">Updated at</th>
                             <th scope="col">Actions</th>
@@ -52,6 +52,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $post->title }}</td>
+                                <td>{{ $post->user->name }}</td>
                                 <td>{{ $post->created_at }}</td>
                                 <td>{{ $post->updated_at }}</td>
                                 <td class="d-flex align-items-center justify-content-start">
