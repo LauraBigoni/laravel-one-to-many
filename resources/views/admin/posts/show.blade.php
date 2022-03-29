@@ -23,6 +23,7 @@
             </div>
             <div class="col-12 d-flex flex-row justify-content-between align-items-center pt-5">
                 <div>
+                    <span>Categoria: {{ $post->category_id }} - {{ $post->category->label }}</span> <br>
                     <span>Creato il: {{ $post->created_at }}</span> <br>
                     <span> Ultimo aggiornamento: {{ $post->updated_at }}</span>
                 </div>
