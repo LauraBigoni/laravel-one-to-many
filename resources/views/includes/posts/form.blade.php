@@ -30,11 +30,25 @@
                         class="col-12 d-flex flex-wrap align-items-center" novalidate>
             @endif
             @csrf
-            <div class="form-group col-6">
+            <div class="form-group col-8">
                 <label for="title">Titolo:</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
                     value="{{ old('title', $post->title) }}" required>
                 @error('title')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-group col-4">
+                <label for="category">Categoria:</label>
+                <select class="custom-select" id="category" name="category_id">
+                    <option selected value="">-</option>
+                    @foreach ($categories as $category)
+                        <option value="1">{{ $category->label }}</option>
+                    @endforeach
+                </select>
+                @error('category')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
