@@ -45,7 +45,8 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|unique:posts|max:50|min:5',
             'content' => 'required|string|min:5',
-            'image' => 'nullable|url'
+            'image' => 'nullable|url',
+            'category_id' => 'nullable|exists:categories,id'
         ], [
             'required' => 'Il campo :attribute è obbligatorio.',
             'content.min' => 'Contenuto troppo corto.',
@@ -53,6 +54,7 @@ class PostController extends Controller
             'title.max' => 'Titolo troppo lungo.',
             'url' => 'Non hai inserito un url corretto.',
             'title.unique' => "$request->title esiste già.",
+            'category_id' => 'Categoria non valida.'
         ]);
 
         $data = $request->all();

@@ -43,9 +43,10 @@
             <div class="form-group col-4">
                 <label for="category">Categoria:</label>
                 <select class="custom-select" id="category" name="category_id">
-                    <option selected value="">-</option>
+                    <option value="">-</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->label }}
+                        <option @if (old('category_id') == $category->id) selected @endif value="{{ $category->id }}">
+                            {{ $category->label }}
                         </option>
                     @endforeach
                 </select>
