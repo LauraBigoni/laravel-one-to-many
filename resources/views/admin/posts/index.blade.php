@@ -42,7 +42,9 @@
                                         </button>
                                     </form>
                                 </td>
-                                <td>{{ $post->category->label }}</td>
+                                <td><span
+                                        class="badge badge-pill badge-{{ $post->category->color }}">{{ $post->category->label }}</span>
+                                </td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->created_at }}</td>
                                 <td>{{ $post->updated_at }}</td>
