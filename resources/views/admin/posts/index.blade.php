@@ -22,6 +22,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Publish</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Title</th>
                             <th scope="col">Created at</th>
                             <th scope="col">Updated at</th>
@@ -41,6 +42,7 @@
                                         </button>
                                     </form>
                                 </td>
+                                <td>{{ $post->category->label }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->created_at }}</td>
                                 <td>{{ $post->updated_at }}</td>
