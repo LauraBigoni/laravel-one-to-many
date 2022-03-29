@@ -42,8 +42,14 @@
                                         </button>
                                     </form>
                                 </td>
-                                <td><span
-                                        class="badge badge-pill badge-{{ $post->category->color }}">{{ $post->category->label }}</span>
+                                <td>
+                                    @if (isset($post->category))
+                                    <span class="badge badge-pill badge-{{ $post->category->color }}">
+                                        {{ $post->category->label }}
+                                    </span>
+                                    @else
+                                    -
+                                    @endif
                                 </td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->created_at }}</td>
