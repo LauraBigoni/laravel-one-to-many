@@ -42,7 +42,7 @@
             </div>
             <div class="form-group col-4">
                 <label for="category">Categoria:</label>
-                <select class="custom-select" id="category" name="category_id">
+                <select class="custom-select" id="category" name="category_id"  @error('category_id') is-invalid @enderror>
                     <option value="">-</option>
                     @foreach ($categories as $category)
                         <option @if (old('category_id', $post->category_id) == $category->id) selected @endif value="{{ $category->id }}">
@@ -50,7 +50,7 @@
                         </option>
                     @endforeach
                 </select>
-                @error('category')
+                @error('category_id')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
