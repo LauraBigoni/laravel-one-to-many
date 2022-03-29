@@ -45,7 +45,8 @@
                 <select class="custom-select" id="category" name="category_id">
                     <option selected value="">-</option>
                     @foreach ($categories as $category)
-                        <option value="1">{{ $category->label }}</option>
+                        <option value="{{ $category->id }}">{{ $category->label }}
+                        </option>
                     @endforeach
                 </select>
                 @error('category')
