@@ -91,7 +91,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -106,7 +107,8 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'max:50', 'min:5'],
             'content' => 'required|string|min:5',
-            'image' => 'nullable|url'
+            'image' => 'nullable|url',
+            'category_id' => 'nullable|exists:categories,id'
         ], [
             'required' => 'Il campo :attribute è obbligatorio.',
             'content.min' => 'Contenuto troppo corto.',
@@ -114,6 +116,7 @@ class PostController extends Controller
             'title.max' => 'Titolo troppo lungo.',
             'url' => 'Non hai inserito un url corretto.',
             'title.unique' => "$request->title esiste già.",
+            'category_id' => 'Categoria non valida.'
         ]);
 
         $data = $request->all();
@@ -123,7 +126,7 @@ class PostController extends Controller
         $data['slug'] = Str::slug($request->title, '-');
         $post->update($data);
 
-        return redirect()->route('admin.posts.show', $post)->with('message', "$post->title aggiornato con successo!")->with('type', 'success');
+        return redirect()->route('admin.posts.show', $post->id)->with('message', "$post->title aggiornato con successo!")->with('type', 'success');
     }
 
     /**
