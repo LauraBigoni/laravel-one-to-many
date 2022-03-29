@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function category()
+    {
+        /** 
+         * Serve per fare $post->category
+         */
+        return $this->belongsTo('App\Models\Category');
+    }
 }

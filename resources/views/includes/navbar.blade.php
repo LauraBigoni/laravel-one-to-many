@@ -47,7 +47,8 @@
                                     class="text nav-text">{{ __('Registrati') }}</span></a>
                         </li>
                     @endif
-                @else
+                @endguest
+                @auth
                     <li class="search-box">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" placeholder="Search...">
@@ -102,7 +103,7 @@
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();"><i
+                                                document.getElementById('logout-form').submit();"><i
                                     class="fa-solid fa-right-from-bracket"></i>
                                 <span class="text nav-text">{{ __('Logout') }}</span>
 
@@ -115,7 +116,7 @@
                         </div>
                     </li>
                 </div>
-            @endguest
+            @endauth
         </div>
     </nav>
 </div>

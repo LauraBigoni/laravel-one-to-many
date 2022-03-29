@@ -1,12 +1,10 @@
 <?php
 
-use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Support\Str;
+use App\Models\Category;
 use Illuminate\Support\Arr;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
-
 
 class PostSeeder extends Seeder
 {

@@ -1,6 +1,9 @@
 <?php
 
 use App\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -10,12 +13,14 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        $user = new User();
-        $user->name = 'Laura';
-        $user->email = 'laura@boolean.it';
-        $user->password = bcrypt('password');
-        $user->save();
+        for ($i = 0; $i < 15; $i++) {
+            $user = new User();
+            $user->name = $faker->words(2, true);
+            $user->email = $faker->email();
+            $user->password = bcrypt($faker->password());
+            $user->save();
+        }
     }
 }
