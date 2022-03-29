@@ -3,9 +3,9 @@
         <div class="col-12">
             <header>
                 @if ($post->exists)
-                    <h1 class="text-center text-monospace">Aggiorna il post</h1>
+                    <h1 class="text-center">Aggiorna il post</h1>
                 @else
-                    <h1 class="text-center text-monospace">Crea un nuovo post</h1>
+                    <h1 class="text-center">Crea un nuovo post</h1>
                 @endif
             </header>
             @if ($errors->any())

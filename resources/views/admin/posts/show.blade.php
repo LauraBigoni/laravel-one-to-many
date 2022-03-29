@@ -17,7 +17,7 @@
                     <img class="img-fluid" src="{{ $post->image }}" alt="{{ $post->slug }}">
                 </div>
                 <div class="col-10">
-                    <h2 class="mb-4 text-monospace">{{ $post->title }}</h2>
+                    <h2 class="mb-4">{{ $post->title }}</h2>
                     <p> {{ $post->content }} </p>
                 </div>
             </div>

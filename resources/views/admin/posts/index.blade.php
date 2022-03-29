@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <header>
-                    <h1 class="text-center text-monospace">Lista dei post</h1>
+                    <h1 class="text-center">Lista dei post</h1>
 
                     @if (session('message'))
                         <div class="container alert alert-{{ session('type') }} text-center" role="alert">
@@ -91,7 +91,7 @@
                 <div class="row d-flex flex-wrap justify-content-between align-items-start">
                     @foreach ($categories as $category)
                         <div class="col-3 mb-3">
-                            <h3 class="text-monospace text-uppercase"> {{ $category->label }}</h3>
+                            <h3 class="text-uppercase"> {{ $category->label }}</h3>
                             @foreach ($category->posts as $post)
                                 <h5><a class="text-decoration-none"
                                         href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></h5>
