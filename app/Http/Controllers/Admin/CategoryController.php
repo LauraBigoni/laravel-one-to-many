@@ -1,0 +1,121 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Models\Category;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+
+class CategoryController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $categories = Category::all();
+
+        return view('admin.categories.index', compact('categories'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $category = new Category();
+        return view('admin.categories.create', compact('categories'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'label' => 'required|string|unique:categories|min:2|max:20',
+            'color' => 'string|nullable|min:3'
+        ], [
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'label.unique' => "$request->label esiste già.",
+            'min' => 'Nome troppo corto.',
+            'max' => 'Nome troppo lungo.'
+        ]);
+
+        $data = $request->all();
+        $category = new Category();
+
+        $category->fill($data);
+        $category->save();
+
+        return redirect()->route('admin.categories.show', $category)->with('message', "$category->label aggiunto con successo!")->with('type', 'success');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Category $category
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Category $category)
+    {
+        return view('admin.categories.show', compact('categories'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  Category $category
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Category $category)
+    {
+        return view('admin.categories.edit', compact('categories'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Category $category
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Category $category)
+    {
+        $request->validate([
+            'label' => ['required', 'string', Rule::unique('categories')->ignore($category->id), 'min:2', 'max:20'],
+            'color' => 'string|nullable|min:3'
+        ], [
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'label.unique' => "$request->label esiste già.",
+            'min' => 'Nome troppo corto.',
+            'max' => 'Nome troppo lungo.'
+        ]);
+
+        $data = $request->all();
+        $category->update($data);
+
+        return redirect()->route('admin.categories.show', $category->id)->with('message', "$category->label aggiornato con successo!")->with('type', 'success');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Category $category
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return redirect()->route('admin.category.index')->with('message', "$category->label eliminato con successo!")->with('type', 'danger');
+    }
+}

@@ -17,14 +17,15 @@ Auth::routes();
 
 // * Tutte le rotte sono protette con il middleware auth
 Route::middleware('auth')
-->prefix('admin')
-->name('admin.')
-->namespace('Admin')
-->group(function () {
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::patch('/posts/{post}/toggle', 'PostController@toggle')->name('posts.toggle');
-    Route::resource('posts', 'PostController');
-});
+    ->prefix('admin')
+    ->name('admin.')
+    ->namespace('Admin')
+    ->group(function () {
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::patch('/posts/{post}/toggle', 'PostController@toggle')->name('posts.toggle');
+        Route::resource('posts', 'PostController');
+        Route::resource('categories', 'CategoryController');
+    });
 
 // * {any} Un parametro che può anche non esserci e se c'è ".*" può essere qualunque cosa. In questo modo qualunque rotta deve andare su Vue e andrà gestita in frontend.
 Route::get('{any?}', function () {

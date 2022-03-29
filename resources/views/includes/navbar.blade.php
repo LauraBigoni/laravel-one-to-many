@@ -76,9 +76,9 @@
                                 <span class="text nav-text">Posts</span>
                             </a>
                         </li>
-{{-- admin.categories.index --}}
+
                         <li class="nav-link">
-                            <a href="{{ route('admin.home') }}"
+                            <a href="{{ route('admin.categories.index') }}"
                                 class="nav-link {{ Request::is('admin/posts*') ? 'active' : '' }}">
                                 <i class="fa-regular fa-rectangle-list"></i>
                                 <span class="text nav-text">Categories</span>
@@ -102,7 +102,7 @@
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();"><i
+                                            document.getElementById('logout-form').submit();"><i
                                     class="fa-solid fa-right-from-bracket"></i>
                                 <span class="text nav-text">{{ __('Logout') }}</span>
 
