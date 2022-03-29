@@ -56,7 +56,7 @@ class CategoryController extends Controller
         $category->fill($data);
         $category->save();
 
-        return redirect()->route('admin.categories.show', $category)->with('message', "$category->label aggiunto con successo!")->with('type', 'success');
+        return redirect()->route('admin.categories.show', $category->id)->with('message', "$category->label aggiunto con successo!")->with('type', 'success');
     }
 
     /**

@@ -70,7 +70,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('admin.posts.show', $post)->with('message', "$post->title aggiunto con successo!")->with('type', 'success');
+        return redirect()->route('admin.posts.show', $post->id)->with('message', "$post->title aggiunto con successo!")->with('type', 'success');
     }
 
     /**
